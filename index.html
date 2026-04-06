@@ -7,7 +7,6 @@
 
 <style>
 :root {
-  /* Nova Paleta: Tons de Azul Profundo, Roxo e Ciano Neon */
   --deep-navy: #140b3b;
   --mid-blue: #3128a1;
   --vibrant-purple: #8e2de2;
@@ -76,7 +75,7 @@ h1 {
   font-size: 14px;
   box-shadow: 0 0 15px var(--neon-cyan);
   animation: neon-pulse 2s infinite;
-  color: #140b3b; /* Texto escuro para contraste no ciano */
+  color: #140b3b;
 }
 
 @keyframes neon-pulse {
@@ -98,7 +97,7 @@ h2 {
   letter-spacing: 2px;
 }
 
-/* --- CARROSSEL RESPONSIVO --- */
+/* --- CARROSSEL --- */
 .carousel {
   position: relative;
   display: flex;
@@ -146,34 +145,54 @@ h2 {
   box-shadow: 0 5px 15px rgba(0,0,0,0.4);
 }
 
-.nav-btn:active { transform: scale(0.9); }
 .prev { left: -10px; }
 .next { right: -10px; }
 
-/* --- PREÇOS E TABELAS --- */
-.price-preview {
-  background: rgba(142, 45, 226, 0.1);
-  border: 1px solid var(--neon-cyan);
-  border-radius: 20px;
-  padding: 15px;
-  cursor: pointer;
-  transition: 0.3s;
-  width: 100%;
+/* --- TABELA DE PREÇOS INTEGRADA --- */
+.price-container {
+  background: rgba(142, 45, 226, 0.05);
+  border: 1px solid rgba(61, 252, 193, 0.3);
+  border-radius: 25px;
+  padding: 20px;
+  margin: 20px 0;
 }
 
-.price-preview:hover { background: rgba(61, 252, 193, 0.1); }
-
 table { width: 100%; border-collapse: collapse; }
-.header-row td { color: var(--neon-cyan); font-weight: bold; font-size: 12px; padding-bottom: 10px; }
-.price-row td { padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 14px; color: #fff; }
+
+.header-row th { 
+  color: var(--neon-cyan); 
+  font-weight: bold; 
+  font-size: 12px; 
+  padding-bottom: 15px; 
+  text-transform: uppercase;
+  text-align: left;
+}
+
+.price-row td { 
+  padding: 12px 0; 
+  border-bottom: 1px solid rgba(255,255,255,0.05); 
+  font-size: 14px; 
+  color: #fff;
+  text-align: left;
+}
+
+.price-row td:not(:first-child) {
+  text-align: center;
+}
+
+.header-row th:not(:first-child) {
+  text-align: center;
+}
 
 .info-list {
   text-align: left;
-  margin: 25px 0;
-  font-size: 14px;
+  margin-top: 20px;
+  font-size: 13px;
   display: grid;
-  gap: 10px;
+  gap: 8px;
   color: #fff;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  padding-top: 15px;
 }
 
 /* --- BOTÕES --- */
@@ -202,7 +221,7 @@ table { width: 100%; border-collapse: collapse; }
 
 .btn:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
 
-/* --- MODAL --- */
+/* --- MODAL (APENAS PARA IMAGENS) --- */
 .modal {
   display: none;
   position: fixed;
@@ -215,40 +234,18 @@ table { width: 100%; border-collapse: collapse; }
   padding: 20px;
 }
 
-.modal-content {
-  background: var(--deep-navy);
-  padding: 25px;
-  border-radius: 30px;
-  width: 100%;
-  max-width: 450px;
-  border: 1px solid var(--neon-cyan);
-  text-align: center;
-}
-
 #modalFullImg {
   max-width: 100%;
-  max-height: 70vh;
+  max-height: 90vh;
   border-radius: 15px;
   object-fit: contain;
-}
-
-.close-btn {
-  margin-top: 20px;
-  background: var(--vibrant-purple);
-  color: white;
-  border: none;
-  padding: 12px 35px;
-  border-radius: 12px;
-  cursor: pointer;
-  font-weight: bold;
+  border: 2px solid var(--neon-cyan);
 }
 
 @media (max-width: 400px) {
   .card { padding: 20px; }
   .btn-group { flex-direction: column; }
   .btn { width: 100%; }
-  .prev { left: 0; }
-  .next { right: 0; }
 }
 </style>
 </head>
@@ -263,7 +260,7 @@ table { width: 100%; border-collapse: collapse; }
 
   <hr>
 
-  <h2>Portfolio</h2>
+  <h2>Example of art</h2>
   <div class="carousel">
     <button class="nav-btn prev" onclick="changeArt(-1)" aria-label="Anterior">❮</button>
     <div class="art-wrapper">
@@ -274,66 +271,46 @@ table { width: 100%; border-collapse: collapse; }
     <button class="nav-btn next" onclick="changeArt(1)" aria-label="Próximo">❯</button>
   </div>
 
-  <h2>Preços Base</h2>
-  <div class="price-preview" onclick="openPriceModal()">
+  <h2>Price List</h2>
+  <div class="price-container">
     <table>
       <thead>
         <tr class="header-row">
-          <td>TIPO</td>
-          <td>FLAT</td>
-          <td>SHADED</td>
+          <th>Type</th>
+          <th>Flat</th>
+          <th>Shaded</th>
         </tr>
       </thead>
       <tbody>
-        <tr class="price-row">
-          <td>Fullbody</td>
-          <td>$25</td>
-          <td>$30</td>
-        </tr>
+        <tr class="price-row"><td>Headshot</td><td>R$15 / $5</td><td>R$30 / $10</td></tr>
+        <tr class="price-row"><td>Halfbody</td><td>R$25 / $15</td><td>R$45 / $20</td></tr>
+        <tr class="price-row"><td>Fullbody</td><td>R$30 / $25</td><td>R$50 / $30</td></tr>
       </tbody>
     </table>
-    <p style="font-size: 11px; margin-top: 10px; color: var(--neon-cyan); font-weight: bold;">Clique para ver a lista completa</p>
-  </div>
 
-  <div class="info-list">
-    <div>✦ Casal: +60%</div>
-    <div>✦ Fundo Simples: Grátis</div>
-    <div>✦ 🌌 Cenário Detalhado: +R$80 / $16</div>
-    <div>✦ 🐾 Personagem Extra: +60%</div>
+    <div class="info-list">
+      <div>✦ Couple: +60%</div>
+      <div>✦ Simple Background: Free</div>
+      <div>✦ 🌌 Detailed BG: +R$80 / $16</div>
+      <div>✦ 🐾 Extra Char: +60%</div>
+    </div>
   </div>
 
   <nav class="btn-group">
-    <a href="rules.html" class="btn btn-rules">Regras</a>
-    <a href="https://instagram.com/iyushiw_00" class="btn btn-contact">Contato</a>
+    <a href="rules.html" class="btn btn-rules">Rules</a>
+    <a href="https://instagram.com/iyushiw_00" class="btn btn-contact">Contact Me</a>
   </nav>
 </main>
 
-<div class="modal" id="universalModal" onclick="closeModal()">
-  <div id="modalContainer" onclick="event.stopPropagation()" style="width: 100%; display: flex; flex-direction: column; align-items: center;">
-    <img id="modalFullImg" style="display:none;">
-    <div id="priceTableContent" style="display:none;" class="modal-content">
-       <h2 style="color: var(--neon-cyan)">Tabela de Preços</h2>
-       <table style="text-align: left; margin-bottom: 20px;">
-         <tr style="border-bottom: 2px solid var(--vibrant-purple)">
-           <th style="padding: 10px 0; color: var(--neon-cyan);">Tipo</th>
-           <th style="color: var(--neon-cyan);">Flat</th>
-           <th style="color: var(--neon-cyan);">Shaded</th>
-         </tr>
-         <tr class="price-row"><td>Headshot</td><td>R$15 / $5</td><td>R$30 / $10</td></tr>
-         <tr class="price-row"><td>Halfbody</td><td>R$25 / $15</td><td>R$45 / $20</td></tr>
-         <tr class="price-row"><td>Fullbody</td><td>R$30 / $25</td><td>R$50 / $30</td></tr>
-       </table>
-       <button class="close-btn" onclick="closeModal()">Fechar</button>
-    </div>
-  </div>
+<div class="modal" id="imageModal" onclick="closeModal()">
+  <img id="modalFullImg" src="" alt="Ampliada">
 </div>
 
 <script>
 let currentArt = 0;
 const arts = document.querySelectorAll('.art-img');
-const modal = document.getElementById('universalModal');
+const modal = document.getElementById('imageModal');
 const modalImg = document.getElementById('modalFullImg');
-const priceContent = document.getElementById('priceTableContent');
 
 function changeArt(dir) {
   arts[currentArt].classList.remove('active');
@@ -344,14 +321,6 @@ function changeArt(dir) {
 function openImageModal(src) {
   modal.style.display = 'flex';
   modalImg.src = src;
-  modalImg.style.display = 'block';
-  priceContent.style.display = 'none';
-}
-
-function openPriceModal() {
-  modal.style.display = 'flex';
-  modalImg.style.display = 'none';
-  priceContent.style.display = 'block';
 }
 
 function closeModal() {
