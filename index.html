@@ -195,6 +195,54 @@ table { width: 100%; border-collapse: collapse; }
   padding-top: 15px;
 }
 
+/*do e dont box*/
+
+.doDontContainer{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap:15px;
+  margin-top: 20px;
+}
+
+.doBox .dontBox{
+  background: rgba(142, 45, 226, 0.08);
+  border: 1px solid rgba(61, 252, 193, 0.3);
+  border-radius: 20px
+  padding:15px;
+  text-align:left;
+}
+
+.doBox h3{
+  color: var(--neon-cyan);
+  margin-bottom: 10px;
+}
+
+.dontBox h3{
+  color: #ff6b6b;
+  margin-bottom: 10px;
+}
+
+.doBox ul, .dontBox ul{
+  list-style: none;
+  font-size: 13px;
+  display: grid;
+  gap:6px;
+  color:#fff;px
+}
+
+.doBox li::before {
+  content: "✦ ";
+  color: var(--neon-cyan);
+}
+
+.dontBox li::before {
+  content: "✦ ";
+  color: #ff6b6b;
+}
+
+
+
+
 /* --- BOTÕES --- */
 .btn-group {
   display: flex;
@@ -246,6 +294,13 @@ table { width: 100%; border-collapse: collapse; }
   .card { padding: 20px; }
   .btn-group { flex-direction: column; }
   .btn { width: 100%; }
+  
+  .doDontContainer {
+    grid-template-columns: 1fr;
+  }
+}
+  
+  
 }
 </style>
 </head>
@@ -297,7 +352,36 @@ table { width: 100%; border-collapse: collapse; }
       <div>✦ 🐾 Extra Char :+R$20/ 10$ </div>
     </div>
   </div>
+  
+  <div class="doDontContainer">
+    
 
+  
+    <div class="doBox">
+     <h3>What i do:</h3>
+     <ul>
+        <li>Humans </li>
+      <li>Fanarts </li>
+      <li>Symple background</li>
+            <li>Ocs</li>
+            <li>Reference sheet</li>
+     </ul>
+    </div>
+  
+  
+   <div class="dontBox">
+     <h3>What i don't do:</h3>
+     <ul>
+            <li>Animals(only pets)</li>
+      <li>Nsfw </li>
+      <li> Mecha</li>
+      <li>Furry</li>
+            <li>nudism</li>
+            <li>Violence or aggression</li>
+     </ul>
+    </div>
+    </div>
+    
   <nav class="btn-group">
     <a href="rules.html" class="btn btn-rules">Rules</a>
     <a href="https://instagram.com/iyushiw_00" class="btn btn-contact">Contact Me</a>
